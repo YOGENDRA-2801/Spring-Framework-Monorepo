@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<bean class="in.yoy.validator.StudentValidator" id="stdval">
+		<property name="res" value="classpath:in/yoy/resources/error_message.properties"/>
+	</bean>
+	<!-- Always use classpath: for files inside src/main/resources -->
+
+    <bean class="in.yoy.bean.Student" id="vidyarthi">
+    	<property name="name" value="Yogendra"/>
+    	<property name="rollno" value="28"/>
+    	<property name="phonenumber" value="7506562343"/>
+    </bean>
+
+</beans>

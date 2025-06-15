@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="studId" class="in.yoy.beans.Students">
+    	<constructor-arg value="27" />
+    	<constructor-arg value="Yogendra Yadav" />
+    	<constructor-arg value="MCA" />
+    	<!-- ORDER IS IMPORTANT -->
+    </bean>
+    
+    <bean name="majdoor majboori , doori ; rojgaar , majboori" class="in.yoy.beans.Employee">
+    	 <constructor-arg value="2851" index="1" />
+    	 <constructor-arg value="963852f" index="2"/>
+    	 <constructor-arg value="DevOps" index="0"/>
+    	 <!-- RECOMMENDED & REMEMBER THAT INDEX STARTS WITH 0 -->
+    </bean>
+    
+    <bean name="musibat" id="musibat" class="in.yoy.beans.Employee">
+    	 <constructor-arg value="123456f" type="float"/>
+    	 <constructor-arg value="852" type="int"/>
+    	 <constructor-arg value="Security" type="String"/>
+    	 <!--risky with overloaded constructor AND same type property (order dekhta h but risky)-->
+    </bean>
+
+	<!-- Can use "name" attribute also but require additional setup+code (-parameter) -->
+
+</beans>

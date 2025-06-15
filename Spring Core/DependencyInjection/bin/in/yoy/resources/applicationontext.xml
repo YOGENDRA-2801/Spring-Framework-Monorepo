@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- SETTER METHOD DI -->
+    <bean class="in.yoy.beans.Address" id="pata" >
+    	<property name="houseno" value="101" />
+    	<property name="city" value="Thane" />
+    	<property name="pincode" value="400610" />
+    </bean>
+	<bean class="in.yoy.beans.Student" id="vidyarthi" >
+    	<property name="rollno" value="48" />
+    	<property name="name" value="Yogendra" />
+    	<property name="address" ref="pata" />
+    </bean>
+    
+    <!-- CONTRUCTOR ARG DI -->
+    <bean class="in.yoy.beans.Department" id="module" >
+    	<constructor-arg value="50" index="0" />
+    	<constructor-arg value="Yogendra" index="1" />
+    	<constructor-arg value="Backend" index="2" />
+    </bean>
+	<bean class="in.yoy.beans.Employee" id="majdoor" >
+    	<constructor-arg value="2851" index="0" />
+    	<constructor-arg value="Developer" index="1" />
+    	<constructor-arg ref="module" index="2" />
+    </bean>
+  
+  	<!-- MIX OF SETTER AND CONSTRUCTOR -->  
+    <bean class="in.yoy.beans.Myself" id="insaan" >
+    	<property name="name" value="Yogendra" />
+    	<property name="age" value="22" />
+    	<property name="add" ref="pata" />
+    	<property name="dept" ref="module" />
+    </bean>
+
+	<!-- CIRCULAR DI -->
+	<bean class="in.yoy.beans.Earth" id="haragola">
+		<!-- <constructor-arg ref="kalagola" /> --> <!-- IT WILL GIVE ERROR -->
+		<property name="chaand" ref="kalagola" /> 
+	</bean>
+	<bean class="in.yoy.beans.Moon" id="kalagola">
+		<!-- <constructor-arg ref="haragola" /> --> <!-- IT WILL GIVE ERROR -->
+		<property name="prithvi" ref="haragola" />
+	</bean>
+
+</beans>

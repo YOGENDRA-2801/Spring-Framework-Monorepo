@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+YH GREEN LINE NAHI HAT RAHA HAI MESAURES I TRIED ARE 
+1. NAMESPACE DECLARATION ADD KIYA TO RED LINE AAYA
+2. XML CATALOG CREATE KIYA FOR SPECIFIC LINK BUT PHIR BHI RED LINE NAHI HATA
+3. DOWNLOAD FROM EXTERNAL RSOURCE ENABLE KRNE KA OPTION NAHI MILA
+4. SPELLINGS K SATH BHI TRY KIYE COMBINATIONS
+5. AUTO-ACTIVATION ON KIYA ; VALIDATION KA RESOLVE EXTERNAL ENTITIES BHI ON KRKE DEKHA
+-->
+<Configuration status="WARN" monitorInterval="30"
+ xmlns="https://logging.apache.org/xml/ns"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://logging.apache.org/xml/ns 
+    https://logging.apache.org/xml/ns/log4j-config-2.xsd">
+	<!-- 
+	0. ROOT TAG FOR CONFIG & HOLDS ALL CONFIG 
+	1. status is not for your application logs, balki Log4j framework khud ke internal logs ke liye hota hai. 
+	2. status="WARN" ka matlab: Agar Log4j me koi configuration error hai, to Log4j apne internal issues console pe print 
+	karega, but sirf WARN level se upar wale hi (WARN, ERROR, FATAL). 
+	-->
+	
+	<Appenders>
+		<!-- DEFINE/CONTAINS MULTIPLE APPENDERS THAT TELLS WHERE THE LOG REPORT WILL GET DISPLAYED -->
+
+		<Appender type="Console" name="ConsoleAppender" Target="SYSTEM_OUT"> 
+			<!-- Type ko hi as a Tag ka naam h use krne ka ager dusere style me likhna hai to -->
+			<!-- 
+			1. TO DEFINE CONSOLE APPENDER USE TYPE Console and name can be given anything 
+			2. Target attribute sirf Console Appender ke case me hi use hota hai bakio me nahi 3. Target has 2 value SYSTEM_OUT 
+			(default) & SYSTEM_ERR that prints log to System.out & System.error 
+			-->
+			<Layout type="PatternLayout" pattern="%m" />
+			<!-- FORMATS LOG REPORT FOR BETTER REDABILITY -->
+		</Appender>
+
+		<Appender type="File" name="FileAppender"
+			fileName="C:\DEMO FOLDER\FileAppender.txt" append="true">
+			<!-- 
+			1. DEFINES FILE APPENDER 
+			2. fileName - location ; Present nahi hoga to create kr dega 
+			-->
+			<Layout type="PatternLayout" pattern="%m" />
+		</Appender>
+
+		<RollingFile name="RollingFileLogger" fileName="logs/app-log.txt" filePattern="logs/app-log-%d{yyyy-MM-dd}-%i.txt.gz">
+		<!-- 
+		1. Tag ko hi as a type use krne ka ager dusere style m likhna hai to 
+		2. YH STYLE ME BHI APPENDER DEEFINE KR SKTE HAI INSIDE <APPENDERS> 
+		-->	
+			<PatternLayout pattern="%d %p %c{1} - %m%n" />
+			<Policies>
+				<SizeBasedTriggeringPolicy size="5MB" />
+				<!-- 
+				1. SPECIFIC TO RollingFile AS IT ROLLS OVER WHEN IT FROWS TOO LARGE
+				2. IT HAS 2 ATRIBUTES time and size to roll over time & size respectively 
+				3. <TimeBasedTriggeringPolicy interval="1"/>
+				-->
+			</Policies>
+		</RollingFile>
+
+	</Appenders>
+
+	<Loggers>
+
+		<Logger name="in.yoy.log4jPart2.DemoOne" level="trace" additivity="false">
+		<!-- DEDICATED APPENDER FOR CLASS "DemoOne" -->
+			<AppenderRef ref="FileAppender" />
+		</Logger>
+
+		<Root level="all">
+		<!-- DEFAULR APPENDER (AGER GIVEN CLASS/PKG K LIYE KOI SPECIFIC APPENDER DEFINE NAHI HOGA THEN YH LENGE) -->
+			<AppenderRef ref="ConsoleAppender" />
+			<!-- USS APPENDER KA NAAM MENTION KRNA JO USE KRNA HAI -->
+		</Root>
+
+	</Loggers>
+	
+	<!-- Logger for DemoOne me kuch gadbad hai -->
+</Configuration>
+

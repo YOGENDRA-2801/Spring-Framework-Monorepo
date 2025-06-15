@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+	xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans.xsd 
+						http://www.springframework.org/schema/aop 
+						http://www.springframework.org/schema/aop/spring-aop.xsd"> 
+		
+	<!-- TARGET CLASSES BEAN DEFINITION -->	
+	<bean class="in.yoy.services.BankServices" id="bnkSrv" />
+	<bean class="in.yoy.services.PaytmServices" id="ptmSrv" />
+	
+	<!-- ASPECT CLASS BEAN DEFINITION -->
+	<bean class="in.yoy.aspects.LogInAspect" id="logInID" />
+	<bean class="in.yoy.aspects.SecurityAspect" id="secID" />
+	
+	<!-- 3 => SINGLE ASPECT/ADVICE MULTIPLE TARGETS -->
+	<aop:config>
+		<aop:aspect ref="secID"> 
+		
+			<!-- TARGET = BANKSERVICE -->
+			<aop:pointcut expression="execution(* in.yoy.services.BankServices.*(..))" id="bnkPtCt1"/> 
+			<aop:before method="suraksha" pointcut-ref="bnkPtCt1"/> 
+			<aop:after method="suraksha" pointcut-ref="bnkPtCt1"/>	
+			
+			<!-- TARGET = PAYTMSERVICE -->
+			<aop:pointcut expression="execution(* in.yoy.services.PaytmServices.*(..))" id="pytmPtCt1"/> 
+			<aop:before method="suraksha" pointcut-ref="pytmPtCt1"/> 
+			<aop:after method="suraksha" pointcut-ref="pytmPtCt1"/>
+			
+		</aop:aspect>
+	</aop:config>
+
+</beans>
+

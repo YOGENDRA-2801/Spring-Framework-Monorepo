@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+        
+   	<!-- 
+   		=> Namespace declaration = Custom tags (context:) ke rules aur meaning batana
+   		
+   		=> 
+   		1️⃣ xmlns:context ka matlab hai:
+			"Main abhi se context: naam ka tag use karunga — aur uska matlab ye URL batayega."
+
+		2️⃣ http://www.springframework.org/schema/context
+		Ye namespace identifier hai.
+		Iska matlab ye hai ki jo bhi context: ke saath tags likhenge, unka meaning (definition) is URL wale standard (schema) 
+		se milega.
+
+		3️⃣ http://www.springframework.org/schema/context/spring-context.xsd
+		Ye XSD (XML Schema Definition) file ka URL hai — jisme bataya gaya hai ki is namespace ke tags ka structure aur rules 
+		kya hain.
+   		
+   		=> Simple : Mein context naam ke kuch special tags use karunga, aur unka rulebook ye XSD file hai
+   	 -->
+   	
+   	<context:property-placeholder location="classpath:/in/yoy/resources/student.properties"/>
+   	<!-- Properties file load karta hai aur ${...} ko resolve karta hai -->
+	
+	<!-- Below One is Deprecated -->
+	<!-- 
+		<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+			<property name="location" value="/in/sp/resources/student.properties"/>
+		</bean>
+	 -->
+	
+    <bean class="in.yoy.beans.Student" id="vidyarthi" >
+    	<property name="name" value="Yogendra" />
+    	<property name="rollNo" value="57" />
+    	<property name="course" value="BSCIT" />
+    	<property name="subjects">
+    		<list>
+    			<value>C</value>
+				<value>C++</value>
+				<value>${student.subjects.s3}</value>
+				<value>Python</value>
+    		</list>
+    	</property>
+    	<property name="marks">
+    		<map> 
+    			<entry key="${student.marks.k1}" value="265" />
+    			<entry key="SY" value="${student.marks.v2}" />
+    			<entry key="TY" value="239" />  
+    		</map>
+    	</property>
+    </bean>
+
+</beans>

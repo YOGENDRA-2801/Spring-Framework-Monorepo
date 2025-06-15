@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+	xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans.xsd 
+						http://www.springframework.org/schema/aop 
+						http://www.springframework.org/schema/aop/spring-aop.xsd"> 
+		
+	<!-- TARGET CLASSES BEAN DEFINITION -->	
+	<bean class="in.yoy.services.BankServices" id="bnkSrv" />
+	<bean class="in.yoy.services.PaytmServices" id="ptmSrv" />
+	
+	<!-- ASPECT CLASS BEAN DEFINITION -->
+	<bean class="in.yoy.aspects.LogInAspect" id="logInID" />
+	<bean class="in.yoy.aspects.SecurityAspect" id="secID" />
+	<bean class="in.yoy.aspects.TerminateAspect" id="terID"/>
+	
+	<!-- 1 => SAME TARGET MULTIPLE ADVICE/ASPECT -->
+	<aop:config>
+	
+		<aop:aspect ref="secID"> <!-- SECURITY ASPECT -->
+		<!-- Through ref bataya ki konsi class h advice ki (jisme advice ki meths hai) -->		
+			
+			<aop:pointcut expression="execution(* in.yoy.services.BankServices.*(..))" id="bnkPtCt1"/> 
+			<!-- Traget bataya through method signature -->
+			<aop:before method="suraksha" pointcut-ref="bnkPtCt1"/> 
+			<!-- advice ko dala pointcut wale location per via ref -->
+			<aop:after method="suraksha" pointcut-ref="bnkPtCt1"/>
+			<!-- since aspect me ref ke through bataya gaya hai ki cls konsi hai hence advice ko pata h meth konsi cls ka h -->				
+		
+		</aop:aspect>
+		
+		<aop:aspect ref="logInID"> <!-- LOG IN ASPECT -->
+			
+			<aop:pointcut expression="execution(* in.yoy.services.BankServices.*(..))" id="bnkPtCt2"/>
+			<aop:before method="prawesh" pointcut-ref="bnkPtCt2"/>
+			
+		</aop:aspect>
+
+	<!-- 1+THIS_BELOW => MULTIPLE TARGET & MULTIPLE ASPECT -->
+		<aop:aspect ref="terID"> <!-- TERMINARE ASPECT -->
+	
+			<!-- TARGET = BANKSERVICE -->
+			<aop:pointcut expression="execution(* in.yoy.services.BankServices.*(..))" id="bnkPtCt3" />
+			<aop:after method="cnctnClsd" pointcut-ref="bnkPtCt3" />
+	
+			<!-- TARGET = PAYTMSERVICE -->
+			<aop:pointcut expression="execution(* in.yoy.services.PaytmServices.*(..))" id="pytmPtCt1" />
+			<aop:after method="cnctnClsd" pointcut-ref="pytmPtCt1" />
+	
+		</aop:aspect>
+		
+	</aop:config>
+
+</beans>
+
