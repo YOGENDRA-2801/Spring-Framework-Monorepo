@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="in.yoy.HbrntXmlMap.beans.Students" table="students">
+		<!-- Yh <id> tag use nahi kiya to <class> per error dega -->
+		<id name="rollNo" column="std_rollno"> <generator class="identity"></generator> </id>
+		<property name="name" column="std_name" />
+		<property name="course" column="std_course" />
+		<property name="marks" column="std_marks" />
+	</class>
+</hibernate-mapping>
