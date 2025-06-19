@@ -15,7 +15,6 @@ public class App
         Students std = context.getBean(Students.class , "stud") ;
         StudSrvcIntrfc stdSrv = context.getBean(StudSrvcImplmt.class, "studDaoService") ;
         stdSrv.insertStudSrvc(std) ;
-        stdSrv.retrieveStudSrvc(std.getRollno()) ;
         context.close() ;
     }
 }

@@ -8,7 +8,7 @@
 		<property name="name" column="std_name" />
 		<property name="course" column="std_course" />
 		<property name="marks">
-			<column name="marks" precision="10" scale="2" />
+			<column name="std_marks" precision="10" scale="2" />
 		</property>
 	</class>
 </hibernate-mapping>

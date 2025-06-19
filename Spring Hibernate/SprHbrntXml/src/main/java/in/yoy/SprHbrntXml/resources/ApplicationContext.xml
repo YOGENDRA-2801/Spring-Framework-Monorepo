@@ -41,7 +41,7 @@
 		</property>
 	</bean>
 	<!-- 3. Create a bean to enable transaction -->
-	<tx:annotation-driven />
+	<tx:annotation-driven/>
 	<!-- 4. Create a bean for Transaction Manager -->
 	<bean
 		class="org.springframework.orm.hibernate5.HibernateTransactionManager"
@@ -54,7 +54,7 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	<!-- DAO BEAN -->
-	<bean class="in.yoy.SprHbrntXml.dao.StudDabImplmt" id="studDaoImp">
+	<bean class="in.yoy.SprHbrntXml.dao.StudDaoImplmt" id="studDaoImp">
 		<property name="hbTemp" ref="hbTemp" />
 	</bean>
 	<!-- SERVICE BEAN -->

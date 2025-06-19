@@ -5,7 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import in.yoy.SprHbrntXml.beans.Students;
 
-public class StudDabImplmt implements StudDaoIntrfc {
+public class StudDaoImplmt implements StudDaoIntrfc {
 	
 	private HibernateTemplate hbTemp ;
 
