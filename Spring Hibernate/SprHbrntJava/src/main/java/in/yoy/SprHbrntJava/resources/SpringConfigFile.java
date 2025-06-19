@@ -6,6 +6,7 @@ import java.util.Properties;
 import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
@@ -17,6 +18,7 @@ import in.yoy.SprHbrntJava.dao.StudDaoImplmt;
 import in.yoy.SprHbrntJava.service.StudSrvcImplmt;
 
 @EnableTransactionManagement
+@Configuration
 public class SpringConfigFile {
 //	1. CREATE A BEAN FOR DATASOURCE
 	@Bean
