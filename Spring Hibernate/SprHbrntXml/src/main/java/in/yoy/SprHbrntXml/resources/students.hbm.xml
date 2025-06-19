@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="in.yoy.SprHbrntXml.beans.Students" table="students">
+		<id name="rollno" column="std_rollno" />
+		<property name="name" column="std_name" />
+		<property name="course" column="std_course" />
+		<property name="marks">
+			<column name="marks" precision="10" scale="2" />
+		</property>
+	</class>
+</hibernate-mapping>

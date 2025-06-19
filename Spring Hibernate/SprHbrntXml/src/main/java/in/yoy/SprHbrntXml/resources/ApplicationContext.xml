@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/tx 
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop 
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<!-- 1. Create a bean for DataSource -->
+	<bean
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+		id="dMDataSource">
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
+		<property name="url"
+			value="jdbc:mysql://127.0.0.1:3306/spr_hbrnt" />
+		<property name="username" value="root" />
+		<property name="password" value="ABCxyz123@" />
+	</bean>
+	<!-- 2. Create a bean for Session Factory -->
+	<bean
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean"
+		id="sessionFactory">
+		<property name="dataSource" ref="dMDataSource" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.formate_sql">true</prop>
+			</props>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>/in/yoy/SprHbrntXml/resources/students.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+	<!-- 3. Create a bean to enable transaction -->
+	<tx:annotation-driven />
+	<!-- 4. Create a bean for Transaction Manager -->
+	<bean
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager"
+		id="txManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<!-- 5. Create a bean for Hibernate Template -->
+	<bean class="org.springframework.orm.hibernate5.HibernateTemplate"
+		id="hbTemp">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<!-- DAO BEAN -->
+	<bean class="in.yoy.SprHbrntXml.dao.StudDabImplmt" id="studDaoImp">
+		<property name="hbTemp" ref="hbTemp" />
+	</bean>
+	<!-- SERVICE BEAN -->
+	<bean class="in.yoy.SprHbrntXml.service.StudSrvcImplmt" id="studDaoService">
+		<property name="studDao" ref="studDaoImp" />
+	</bean>
+	<!-- STUDENT BEAN -->
+	<bean class="in.yoy.SprHbrntXml.beans.Students" id="stud">
+		<property name="name" value="Yogendra" />
+		<property name="rollno" value="1" />
+		<property name="course" value="BSCIT" />
+		<property name="marks" value="765.89" />
+	</bean>
+</beans>
