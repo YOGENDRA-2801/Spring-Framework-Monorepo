@@ -1,7 +1,7 @@
-package in.yoy.SprHbrntXml.service;
+package in.yoy.SprHbrntJava.service;
 
-import in.yoy.SprHbrntXml.beans.Students;
-import in.yoy.SprHbrntXml.dao.StudDaoIntrfc;
+import in.yoy.SprHbrntJava.beans.Students;
+import in.yoy.SprHbrntJava.dao.StudDaoIntrfc;
 
 public class StudSrvcImplmt implements StudSrvcIntrfc {
 

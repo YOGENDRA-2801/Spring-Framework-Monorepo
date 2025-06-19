@@ -45,7 +45,7 @@
 	<!-- 4. Create a bean for Transaction Manager -->
 	<bean
 		class="org.springframework.orm.hibernate5.HibernateTransactionManager"
-		id="txManager">
+		id="transactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<!-- 5. Create a bean for Hibernate Template -->
