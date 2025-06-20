@@ -15,7 +15,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import in.yoy.SprHbrntJava.beans.Students;
 import in.yoy.SprHbrntJava.dao.StudDaoImplmt;
+import in.yoy.SprHbrntJava.dao.StudDaoIntrfc;
 import in.yoy.SprHbrntJava.service.StudSrvcImplmt;
+import in.yoy.SprHbrntJava.service.StudSrvcIntrfc;
 
 @EnableTransactionManagement
 @Configuration
@@ -28,8 +30,7 @@ public class SpringConfigFile {
 		dmds.setUrl("jdbc:mysql://127.0.0.1:3306/spr_hbrnt");
 		dmds.setUsername("root") ;
 		dmds.setPassword("ABCxyz123@") ;
-		return dmds ;
-	}
+		return dmds ;	}
 //	2. CREATE BEAN FOR SESSION FACTORY
 	@Bean
 	public LocalSessionFactoryBean sessionFactory() {
@@ -42,41 +43,35 @@ public class SpringConfigFile {
 		properties.setProperty("hibernate.formate_sql", "true") ;
 		lsfb.setHibernateProperties(properties);
 		lsfb.setPackagesToScan("in.yoy.SprHbrntJava.beans");
-		return lsfb ;
-	}
+		return lsfb ;	}
 //	3. ENABLE TRANSACTION MANAGEMENT -- ALREADY DONE AT FIRST
 //	4. CREATE A BEAN FOR TRASACTION MANAGER
 	@Bean
 	public HibernateTransactionManager transactionManager() {
 		HibernateTransactionManager htm = new HibernateTransactionManager();
 		htm.setSessionFactory(sessionFactory().getObject());
-		return htm ;
-	}
+		return htm ;	}
 //	5. CREATE A BEAN FOR HIBERNATE TEMPLATE
 	@Bean
 	public HibernateTemplate hbTemp() {
 		HibernateTemplate ht = new HibernateTemplate() ;
 		ht.setSessionFactory(sessionFactory().getObject());
-		return ht ;
-	}
+		return ht ; 	}
 //	DAO BEAN
 	@Bean
-	public StudDaoImplmt studDaoImp() {
+	public StudDaoIntrfc studDaoImp() {
 		StudDaoImplmt sdi = new StudDaoImplmt() ;
 		sdi.setHbTemp(hbTemp());
-		return sdi;
-	}
+		return sdi; 	}
 //	SERVICE BEAN
 	@Bean
-	public StudSrvcImplmt studDaoService() {
+	public StudSrvcIntrfc studDaoService() {
 		StudSrvcImplmt ssi = new StudSrvcImplmt() ;
 		ssi.setStudDao(studDaoImp());
-		return ssi ;
-	}
+		return ssi ;	}
 //	STUDENT BEAN
 	@Bean
 	public Students stud() {
 		Students std = new Students("Satish", "BSC-CS", new BigDecimal(111.11)) ;
-		return std ;
-	}
+		return std ;	}
 }

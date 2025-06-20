@@ -22,29 +22,27 @@
 			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
+		<!--  Spring Dependendies  -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
-			<version>6.1.6</version>
+			<version>5.3.10</version>
 		</dependency>
-		<!--https://mvnrepository.com/artifact/org.springframework/spring-context -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>6.1.6</version>
+			<version>5.3.10</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
-			<version>6.1.6</version>
+			<version>5.3.10</version>
 		</dependency>
 		<!--  Hibernate ORM  -->
 		<dependency>
-			<groupId>org.hibernate.orm</groupId>
+			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
-			<version>6.2.7.Final</version>
+			<version>5.5.7.Final</version>
 		</dependency>
 		<!--  Jarkarta Persistence API (JPA)  -->
 		<dependency>
