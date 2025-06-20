@@ -1,4 +1,4 @@
-package in.yoy.SprHbrntJava.beans;
+package in.yoy.SprHbrntAnno.beans;
 
 import java.math.BigDecimal;
 
