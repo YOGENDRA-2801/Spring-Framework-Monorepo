@@ -40,7 +40,7 @@ public class SpringConfigFile {
 		properties.setProperty("hibernate.show_sql", "true") ;
 		properties.setProperty("hibernate.formate_sql", "true") ;
 		lsfb.setHibernateProperties(properties);
-		lsfb.setPackagesToScan("in.yoy.SprHbrntJava.beans");
+		lsfb.setPackagesToScan("in.yoy.SprHbrntAnno.beans");
 		return lsfb ;	}
 //	3. ENABLE TRANSACTION MANAGEMENT -- ALREADY DONE AT FIRST
 //	4. CREATE A BEAN FOR TRASACTION MANAGER

@@ -16,7 +16,7 @@ public class App
         Students std = context.getBean("stud", Students.class) ;
         StudSrvcIntrfc stdSrv = context.getBean("studSrvcImplmt", StudSrvcImplmt.class) ;// bean name if not explicitly defined will be same as class / method name in camel case 
         stdSrv.insertStudSrvc(std) ;
-//        stdSrv.retrieveStudSrvc(1) ;
+//        stdSrv.retrieveStudSrvc(11) ;
         context.close() ;
     }
 }
