@@ -1,4 +1,4 @@
-package in.yoy.JpaProCRUD.main;
+package in.yoy.JpqlCrudPro.main;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
-import in.yoy.JpaProCRUD.entity.Department;
+import in.yoy.JpqlCrudPro.entity.Department;
 
 
 
