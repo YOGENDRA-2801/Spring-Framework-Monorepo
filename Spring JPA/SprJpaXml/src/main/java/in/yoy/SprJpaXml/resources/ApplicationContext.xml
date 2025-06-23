@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SCEHMA -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop 
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- Datasource - config provide krne k liye -->
+	<bean
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+		id="dMDataSource">
+		<property name="driverClassName"
+			value="com.mysql.cj.jdbc.Driver" />
+		<property name="url"
+			value="jdbc:mysql://127.0.0.1:3306/spr_jpa" />
+		<property name="username" value="root" />
+		<property name="password" value="ABCxyz123@" />
+	</bean>
+	<!-- LCEMFB - hb config provide krne k liye -->
+	<bean
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
+		id="entityManager">
+		<property name="dataSource" ref="dMDataSource" />
+		<property name="jpaVendorAdapter">
+			<bean
+				class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+		</property>
+		<property name="packagesToScan">
+			<list>
+				<value>in.yoy.SprJpaXml.entity</value>
+			</list>
+		</property>
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+			</props>
+		</property>
+	</bean>
+	<!-- JTM - to manager tx -->
+	<bean class="org.springframework.orm.jpa.JpaTransactionManager"
+		id="transactionManager">
+		<property name="entityManagerFactory" ref="entityManager" />
+	</bean>
+	<!-- To Enable @Tx -->
+	<tx:annotation-driven />
+	<!-- To Enable @PCtx -->
+	<context:annotation-config />
+	<!-- DAO BEAN - service m need hai -->
+	<bean class="in.yoy.SprJpaXml.dao.DeptDaoImplement" id="dao" /> <!-- Yaha implementated class hi rkhna interface nahi kuki yaha mentioned class ka hi object bnta hai  -->
+	<!-- SERVICE BEAN - main m need hai -->
+	<bean class="in.yoy.SprJpaXml.service.DeptServiceImplement" id="service">
+		<property name="deptDao" ref="dao" />
+	</bean>
+	<!-- DEPARTMENT BEAN - main m need hai -->
+	<bean class="in.yoy.SprJpaXml.entity.Department" id="dept">
+		<property name="name" value="Quality" />
+		<property name="strength" value="8" />
+		<property name="head" value="Satish" />
+	</bean>
+</beans>
