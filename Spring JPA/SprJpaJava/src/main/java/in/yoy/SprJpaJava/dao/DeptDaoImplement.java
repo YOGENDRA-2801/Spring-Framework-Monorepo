@@ -1,12 +1,14 @@
-package in.yoy.SprJpaXml.dao;
+package in.yoy.SprJpaJava.dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import in.yoy.SprJpaXml.entity.Department;
+import in.yoy.SprJpaJava.entity.Department;
 
+@Repository
 public class DeptDaoImplement implements DeptDaoInterface {
 
 	@PersistenceContext // to injects entity manager

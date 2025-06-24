@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!-- SCEHMA -->
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -26,6 +27,7 @@
 		<property name="username" value="root" />
 		<property name="password" value="ABCxyz123@" />
 	</bean>
+	
 	<!-- LCEMFB - hb config provide krne k liye -->
 	<bean
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
@@ -49,21 +51,27 @@
 			</props>
 		</property>
 	</bean>
+	
 	<!-- JTM - to manager tx -->
 	<bean class="org.springframework.orm.jpa.JpaTransactionManager"
 		id="transactionManager">
 		<property name="entityManagerFactory" ref="entityManager" />
 	</bean>
+	
 	<!-- To Enable @Tx -->
 	<tx:annotation-driven />
+	
 	<!-- To Enable @PCtx -->
 	<context:annotation-config />
+	
 	<!-- DAO BEAN - service m need hai -->
 	<bean class="in.yoy.SprJpaXml.dao.DeptDaoImplement" id="dao" /> <!-- Yaha implementated class hi rkhna interface nahi kuki yaha mentioned class ka hi object bnta hai  -->
+	
 	<!-- SERVICE BEAN - main m need hai -->
 	<bean class="in.yoy.SprJpaXml.service.DeptServiceImplement" id="service">
 		<property name="deptDao" ref="dao" />
 	</bean>
+	
 	<!-- DEPARTMENT BEAN - main m need hai -->
 	<bean class="in.yoy.SprJpaXml.entity.Department" id="dept">
 		<property name="name" value="Quality" />
