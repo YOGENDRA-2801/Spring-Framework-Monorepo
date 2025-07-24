@@ -1,0 +1,21 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+
+  <display-name>Archetype Created Web Application</display-name>
+  
+  <servlet>
+  	<servlet-name>myds</servlet-name> <!-- ander k dono tags mention krne p error chala jata hai -->
+  	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping> <!-- ander k dono tags mention krne p error chala jata hai -->
+  	<servlet-name>myds</servlet-name> <!-- Ess tag ko url pattern k pahle likhne ka -->
+  	<url-pattern>/</url-pattern>
+  </servlet-mapping>
+  
+</web-app>
+
+<!-- iske baad spring config file bananeka [ name => srvltname-servlet ] -->
