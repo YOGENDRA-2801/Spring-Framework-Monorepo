@@ -10,4 +10,9 @@ public class MyController
 	public String openAboutUs() {
 		return "aboutus" ;
 	}
+	
+	@GetMapping("/aboutus")
+	public String openBasicForm() {
+		return "basicform" ;
+	}
 }
