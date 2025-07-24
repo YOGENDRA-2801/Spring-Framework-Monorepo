@@ -8,5 +8,11 @@
 </head>
 <body>
 	<h1>BASIC FORM</h1>
+	<form action="profile" method="post">
+		Name : <input type="text" name="name"/> <br/>
+		Email : <input type="email" name="email"/> <br/>
+		Mobile : <input type="tel" name="mobile"/> <br/>
+		<input type="submit" value="submit form"/>
+	</form>
 </body>
 </html>
